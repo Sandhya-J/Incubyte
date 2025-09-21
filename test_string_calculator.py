@@ -37,3 +37,11 @@ def test_add_too_many_numbers_raises_error(calculator):
     numbers = ",".join(str(i) for i in range(1, 10002))
     with pytest.raises(ValueError, match="Too many numbers to process"):
         calculator.add(numbers)
+        
+def test_add_with_newline_delimiter_returns_sum(calculator):
+    result = calculator.add("1\n2,3")
+    assert result == 6
+
+def test_add_with_only_newline_delimiters(calculator):
+    result = calculator.add("1\n2\n3")
+    assert result == 6
