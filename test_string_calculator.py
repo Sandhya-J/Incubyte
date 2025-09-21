@@ -64,3 +64,22 @@ def test_add_with_custom_delimiter_mixed_with_default(calculator):
 def test_add_with_invalid_custom_delimiter_format(calculator):
     with pytest.raises(ValueError, match="Invalid custom delimiter format"):
         calculator.add("//;1;2")
+
+def test_add_with_single_negative_number_raises_error(calculator):
+    with pytest.raises(ValueError, match="negative numbers not allowed -1"):
+        calculator.add("1,-1,2")
+
+
+def test_add_with_multiple_negative_numbers_raises_error(calculator):
+    with pytest.raises(ValueError, match="negative numbers not allowed -1, -2, -3"):
+        calculator.add("1,-1,2,-2,3,-3")
+
+
+def test_add_with_negative_numbers_and_custom_delimiter(calculator):
+    with pytest.raises(ValueError, match="negative numbers not allowed -1, -2"):
+        calculator.add("//;\n1;-1;2;-2")
+
+
+def test_add_with_negative_numbers_and_newline_delimiter(calculator):
+    with pytest.raises(ValueError, match="negative numbers not allowed -1, -2"):
+        calculator.add("1\n-1\n2\n-2")

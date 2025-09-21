@@ -23,6 +23,14 @@ class StringCalculator:
             if len(number_list) > 10000:
                 raise ValueError("Too many numbers to process")
             
+            negative_numbers = [num for num in number_list if num < 0]
+            if negative_numbers:
+                if len(negative_numbers) == 1:
+                    raise ValueError(f"negative numbers not allowed {negative_numbers[0]}")
+                else:
+                    negative_str = ", ".join(str(num) for num in negative_numbers)
+                    raise ValueError(f"negative numbers not allowed {negative_str}")
+            
             result = sum(number_list)
             
             if result > sys.maxsize // 2:  # handle overflow
