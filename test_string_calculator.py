@@ -45,3 +45,22 @@ def test_add_with_newline_delimiter_returns_sum(calculator):
 def test_add_with_only_newline_delimiters(calculator):
     result = calculator.add("1\n2\n3")
     assert result == 6
+
+def test_add_with_custom_delimiter_semicolon(calculator):
+    result = calculator.add("//;\n1;2")
+    assert result == 3
+
+
+def test_add_with_custom_delimiter_pipe(calculator):
+    result = calculator.add("//|\n1|2|3")
+    assert result == 6
+
+
+def test_add_with_custom_delimiter_mixed_with_default(calculator):
+    result = calculator.add("//;\n1;2,3\n4")
+    assert result == 10
+
+
+def test_add_with_invalid_custom_delimiter_format(calculator):
+    with pytest.raises(ValueError, match="Invalid custom delimiter format"):
+        calculator.add("//;1;2")
