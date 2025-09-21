@@ -2,4 +2,5 @@ class StringCalculator:
     def add(self, numbers):
         if not numbers:
             return 0
-        return int(numbers)
+        number_list = [int(num.strip()) for num in numbers.split(',')]
+        return sum(number_list)
