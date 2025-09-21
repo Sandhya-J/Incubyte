@@ -16,9 +16,9 @@ class StringCalculator:
                 numbers_part = parts[1]
                 
                 delimiters = f"[{re.escape(custom_delimiter)},\n]"
-                number_list = [int(num.strip()) for num in re.split(delimiters, numbers_part)]
+                number_list = [int(num.strip()) for num in re.split(delimiters, numbers_part) if num.strip()]
             else:
-                number_list = [int(num.strip()) for num in re.split(r'[,\n]', numbers)]
+                number_list = [int(num.strip()) for num in re.split(r'[,\n]', numbers) if num.strip()]
             
             if len(number_list) > 10000:
                 raise ValueError("Too many numbers to process")
